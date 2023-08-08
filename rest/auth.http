@@ -1,0 +1,35 @@
+### Log In User
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+  "nombre": "new_username",
+  "contrasena": "new_password"
+}
+
+###
+
+### Sign Up (Create) New User
+POST http://localhost:5000/signin
+Content-Type: application/json
+
+{
+  "nombre": "new_username",
+  "contrasena": "new_password"
+}
+
+###
+
+### Update User Password (replace the :id_usuario with the appropriate user ID)
+PUT http://localhost:5000/user/2
+Content-Type: application/json
+
+{
+  "contrasena": "new_updated_password"
+}
+
+###
+
+### Delete User (replace the :id_usuario with the appropriate user ID)
+DELETE http://localhost:5000/user/1
+
