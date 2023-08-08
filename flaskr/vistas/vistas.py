@@ -10,7 +10,9 @@ from ..modelos import (
 )
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
-from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity
+from flask_jwt_extended import jwt_required, create_access_token
+from datetime import datetime
+from ..tareas import registrar_log
 
 cancion_schema = CancionSchema()
 usuario_schema = UsuarioSchema()
@@ -62,6 +64,7 @@ class VistaLogIn(Resource):
         ).all()
         if usuario:
             token_de_acceso = create_access_token(identity=request.json["nombre"])
+            registrar_log.delay(u_nombre, datetime.utcnow())
             return {
                 "mensaje": "Login exitoso",
                 "token de acceso": token_de_acceso,
