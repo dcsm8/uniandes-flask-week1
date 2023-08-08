@@ -1,6 +1,9 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY5MTQ1NjY1NCwianRpIjoiZTU4MmE1YWQtZDQwNi00YjNiLTkxYzUtMTM3OWQyODczZDg0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6Im5ld191c2VybmFtZSIsIm5iZiI6MTY5MTQ1NjY1NCwiZXhwIjoxNjkxNDU3NTU0fQ.575F2oS9d5qaZvx-uE8epoGRAgvbCZzEWyXskRfkAS0
+
 ### Create a new album for user with id 1
 POST http://localhost:5000/usuario/1/albumes
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
   "titulo": "Sample Album",
@@ -11,6 +14,7 @@ Content-Type: application/json
 
 ### Get all albums of user with id 1
 GET http://localhost:5000/usuario/1/albumes
+Authorization: Bearer {{token}}
 
 ### Update album with id 1
 PUT http://localhost:5000/album/1

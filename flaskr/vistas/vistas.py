@@ -10,6 +10,7 @@ from ..modelos import (
 )
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
+from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity
 
 cancion_schema = CancionSchema()
 usuario_schema = UsuarioSchema()
@@ -60,8 +61,11 @@ class VistaLogIn(Resource):
             nombre=u_nombre, contrasena=u_contrasena
         ).all()
         if usuario:
-            # registrar_log.delay(u_nombre, datetime.utcnow())
-            return {"mensaje": "Inicio de sesión exitoso"}, 200
+            token_de_acceso = create_access_token(identity=request.json["nombre"])
+            return {
+                "mensaje": "Login exitoso",
+                "token de acceso": token_de_acceso,
+            }, 200
         else:
             return {"mensaje": "Nombre de usuario o contraseña incorrectos"}, 401
 
@@ -71,9 +75,13 @@ class VistaSignIn(Resource):
         nuevo_usuario = Usuario(
             nombre=request.json["nombre"], contrasena=request.json["contrasena"]
         )
+        token_de_acceso = create_access_token(identity=request.json["nombre"])
         db.session.add(nuevo_usuario)
         db.session.commit()
-        return "Usuario creado exitosamente", 201
+        return {
+            "mensaje": "usuario creado exitosamente",
+            "token de acceso": token_de_acceso,
+        }
 
 
 class VistaUserManagement(Resource):
@@ -91,6 +99,7 @@ class VistaUserManagement(Resource):
 
 
 class VistaAlbumsUsuario(Resource):
+    @jwt_required()
     def post(self, id_usuario):
         nuevo_album = Album(
             titulo=request.json["titulo"],
@@ -109,6 +118,7 @@ class VistaAlbumsUsuario(Resource):
 
         return album_schema.dump(nuevo_album)
 
+    @jwt_required()
     def get(self, id_usuario):
         usuario = Usuario.query.get_or_404(id_usuario)
         return [album_schema.dump(al) for al in usuario.albumes]
