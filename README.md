@@ -13,10 +13,10 @@ flask run
 
 ## Start the worker
 ```sh
-celery -A flaskr.tareas.tareas worker -l info -P gevent
+celery -A tareas.tareas worker -l info -P gevent -Q logs
 ```
 
 ## Start flower dashboard
 ```sh
-celery -A flaskr.tareas.tareas flower
+celery -A tareas.tareas flower
 ```
