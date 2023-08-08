@@ -1,0 +1,13 @@
+### Add a new song to album with id 1
+POST http://localhost:5000/album/1/canciones
+Content-Type: application/json
+
+{
+  "titulo": "Song for Album",
+  "minutos": 4,
+  "segundos": 30,
+  "interprete": "Artist for Album Song"
+}
+
+### Get all songs in album with id 1
+GET http://localhost:5000/album/1/canciones

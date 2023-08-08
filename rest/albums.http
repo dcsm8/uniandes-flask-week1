@@ -1,0 +1,24 @@
+### Create a new album for user with id 1
+POST http://localhost:5000/usuario/1/albumes
+Content-Type: application/json
+
+{
+  "titulo": "Sample Album",
+  "anio": 2023,
+  "descripcion": "This is a sample album.",
+  "medio": "CD"
+}
+
+### Get all albums of user with id 1
+GET http://localhost:5000/usuario/1/albumes
+
+### Update album with id 1
+PUT http://localhost:5000/album/1
+Content-Type: application/json
+
+{
+  "titulo": "Updated Album Title"
+}
+
+### Delete album with id 1
+DELETE http://localhost:5000/album/1

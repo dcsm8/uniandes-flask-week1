@@ -1,0 +1,24 @@
+### Get all songs
+GET http://localhost:5000/canciones
+
+### Add a new song
+POST http://localhost:5000/canciones
+Content-Type: application/json
+
+{
+  "titulo": "Sample Song",
+  "minutos": 3,
+  "segundos": 45,
+  "interprete": "Sample Artist"
+}
+
+### Update song with id 1
+PUT http://localhost:5000/cancion/1
+Content-Type: application/json
+
+{
+  "titulo": "Updated Song Title"
+}
+
+### Delete song with id 1
+DELETE http://localhost:5000/cancion/1
