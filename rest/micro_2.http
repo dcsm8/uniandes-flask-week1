@@ -1,0 +1,4 @@
+### 
+# Get all songs (tablaPuntajes)
+GET http://localhost:5002/tablaPuntajes
+Accept: application/json
