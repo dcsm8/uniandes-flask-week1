@@ -1,0 +1,9 @@
+# @name puntuarCancion
+
+### Puntuar Cancion with ID = 1
+POST http://localhost:5001/cancion/1/puntuar
+Content-Type: application/json
+
+{
+    "puntaje": 10
+}
